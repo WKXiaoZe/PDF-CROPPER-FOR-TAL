@@ -1,0 +1,5 @@
+{
+  "name": "Barcode PDF Cropper",
+  "description": "A precise PDF cropping tool designed to extract 3cm x 4cm barcode labels from larger PDF documents.",
+  "requestFramePermissions": []
+}
