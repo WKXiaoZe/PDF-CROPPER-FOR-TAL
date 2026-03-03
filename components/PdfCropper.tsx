@@ -256,9 +256,11 @@ const PdfCropper: React.FC<PdfCropperProps> = ({ file, mode }) => {
             embeddedPage.setMediaBox(x_pt, y_pt, CELL_WIDTH_PT, CELL_HEIGHT_PT);
             embeddedPage.setCropBox(x_pt, y_pt, CELL_WIDTH_PT, CELL_HEIGHT_PT);
             
-            // Rotate 90 degrees
-            const currentRotation = embeddedPage.getRotation().angle;
-            embeddedPage.setRotation(degrees(currentRotation + 90));
+            // Rotate 90 degrees only for 20x6 mode
+            if (mode === '20x6') {
+              const currentRotation = embeddedPage.getRotation().angle;
+              embeddedPage.setRotation(degrees(currentRotation + 90));
+            }
 
             newPdfDoc.addPage(embeddedPage);
           }
@@ -382,7 +384,7 @@ const PdfCropper: React.FC<PdfCropperProps> = ({ file, mode }) => {
           
           <div className="mt-4 flex items-start gap-2 text-xs text-amber-600 bg-amber-50 p-3 rounded-lg">
             <AlertCircle size={14} className="mt-0.5 shrink-0"/>
-            <p>生成的 PDF 将包含所有检测到的有效标签，并已自动旋转 90 度。</p>
+            <p>生成的 PDF 将包含所有检测到的有效标签{mode === '20x6' ? '，并已自动旋转 90 度' : ''}。</p>
           </div>
         </div>
       </div>
